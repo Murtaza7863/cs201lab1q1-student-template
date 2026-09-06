@@ -20,8 +20,8 @@ public class NumbersArray {
     }
 
     // Write your methods here
-    public static int findMax(Integer[] input) {
-        int max = input[0];
+    public static Integer findMax(Integer[] input) {
+        Integer max = input[0];
         for (int i = 1; i < input.length; i++) {
             if (input[i] > max) {
                 max = input[i];
