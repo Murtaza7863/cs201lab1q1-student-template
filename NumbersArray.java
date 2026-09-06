@@ -33,11 +33,26 @@ public class NumbersArray {
     public static Integer[] findDuplicates(Integer[] input) {
         List<Integer> duplicates = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
-            for (int j = i + 1; j < input.length; j++) {
-                if (input[i].equals(input[j])) {
-                    duplicates.add(input[i]);
+            boolean seen = false;
+            for (int k = 0; k < i; k++) {
+                if (input[k].equals(input[i])) {
+                    seen = true;
+                    break;
                 }
-            }   
+            }
+            if (seen) {
+                continue;
+            }
+
+            int count = 0;
+            for (int j = 0; j < input.length; j++) {
+                if (input[i].equals(input[j])) {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                duplicates.add(input[i]);
+            }
         }
         return duplicates.toArray(new Integer[0]);
     }
