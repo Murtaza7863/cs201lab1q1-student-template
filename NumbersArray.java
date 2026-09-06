@@ -20,56 +20,66 @@ public class NumbersArray {
     }
 
     // Write your methods here
-    public static Integer findMax(Integer[] input) {
-        Integer max = input[0];
-        for (int i = 1; i < input.length; i++) {
-            if (input[i] > max) {
-                max = input[i];
+    public static int findMax(Integer[] array) {
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
             }
         }
         return max;
     }
 
-    public static Integer[] findDuplicates(Integer[] input) {
-        List<Integer> duplicates = new ArrayList<>();
-        for (int i = 0; i < input.length; i++) {
-            boolean seen = false;
-            for (int k = 0; k < i; k++) {
-                if (input[k].equals(input[i])) {
-                    seen = true;
-                    break;
-                }
-            }
-            if (seen) {
-                continue;
-            }
-
+    public static Integer[] findDuplicates(Integer[] array) {
+        int size = 0;
+        Integer[] temp = new Integer[array.length];
+        for (int i = 0; i < array.length; i++) {
             int count = 0;
-            for (int j = 0; j < input.length; j++) {
-                if (input[i].equals(input[j])) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i].equals(array[j])) {
                     count++;
                 }
             }
             if (count > 1) {
-                duplicates.add(input[i]);
+                boolean alreadyAdded = false;
+                for (int k = 0; k < size; k++) {
+                    if (temp[k].equals(array[i])) {
+                        alreadyAdded = true;
+                        break;
+                    }
+                }
+                if (!alreadyAdded) {
+                    temp[size] = array[i];
+                    size++;
+                }
             }
         }
-        return duplicates.toArray(new Integer[0]);
+        Integer[] result = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            result[i] = temp[i];
+        }
+        return result;
     }
 
-    public static Integer[] findUnique(Integer[] input) {
-        List<Integer> unique = new ArrayList<>();
-        for (int i = 0; i < input.length; i++) {
+    public static Integer[] findUnique(Integer[] array) {
+        int size = 0;
+        Integer[] temp = new Integer[array.length];
+        for (int i = 0; i < array.length; i++) {
             int count = 0;
-            for (int j = 0; j < input.length; j++) {
-                if (input[i].equals(input[j])) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i].equals(array[j])) {
                     count++;
                 }
             }
             if (count == 1) {
-                unique.add(input[i]);
+                temp[size] = array[i];
+                size++;
             }
         }
-        return unique.toArray(new Integer[0]);
+        Integer[] result = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            result[i] = temp[i];
+        }
+        return result;
     }
 }
