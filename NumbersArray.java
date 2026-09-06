@@ -20,6 +20,41 @@ public class NumbersArray {
     }
 
     // Write your methods here
-    
-}
+    public static int findMax(Integer[] input) {
+        int max = input[0];
+        for (int i = 1; i < input.length; i++) {
+            if (input[i] > max) {
+                max = input[i];
+            }
+        }
+        return max;
+    }
 
+    public static Integer[] findDuplicates(Integer[] input) {
+        List<Integer> duplicates = new ArrayList<>();
+        for (int i = 0; i < input.length; i++) {
+            for (int j = i + 1; j < input.length; j++) {
+                if (input[i].equals(input[j])) {
+                    duplicates.add(input[i]);
+                }
+            }   
+        }
+        return duplicates.toArray(new Integer[0]);
+    }
+
+    public static Integer[] findUnique(Integer[] input) {
+        List<Integer> unique = new ArrayList<>();
+        for (int i = 0; i < input.length; i++) {
+            int count = 0;
+            for (int j = 0; j < input.length; j++) {
+                if (input[i].equals(input[j])) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                unique.add(input[i]);
+            }
+        }
+        return unique.toArray(new Integer[0]);
+    }
+}
